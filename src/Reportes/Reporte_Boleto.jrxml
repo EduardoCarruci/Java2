@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Boleto" language="groovy" pageWidth="595" pageHeight="900" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9246c59-a740-46a5-a990-4511f7f8be6e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Codigo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ruta.`Precio` AS ruta_Precio,
+     ruta.`Salida` AS ruta_Salida,
+     ruta.`Destino` AS ruta_Destino,
+     ruta.`Horario` AS ruta_Horario,
+     ruta.`Buses` AS ruta_Buses,
+     venta.`Codigo` AS venta_Codigo,
+     venta.`Fecha_De_Venta` AS venta_Fecha_De_Venta,
+     venta.`Asiento_Asignado` AS venta_Asiento_Asignado,
+     venta.`FechaSalida` AS venta_FechaSalida,
+     venta.`Medio_De_Pago` AS venta_Medio_De_Pago,
+     venta.`Tasa_Salida` AS venta_Tasa_Salida,
+     venta.`IVA` AS venta_IVA,
+     venta.`Monto` AS venta_Monto,
+     cliente.`Cedula` AS cliente_Cedula,
+     cliente.`Nombre` AS cliente_Nombre,
+     cliente.`Apellido` AS cliente_Apellido,
+     cliente.`Telefono` AS cliente_Telefono,
+     buses.`Placa` AS buses_Placa,
+     buses.`NumerodeBus` AS buses_NumerodeBus
+FROM
+     `ruta` ruta INNER JOIN `venta` venta ON ruta.`Codigo` = venta.`Ruta`
+     INNER JOIN `cliente` cliente ON venta.`Cliente` = cliente.`Cedula`
+     INNER JOIN `buses` buses ON ruta.`Buses` = buses.`Placa`
+where venta.`Codigo`=$P{Codigo}]]>
+	</queryString>
+	<field name="ruta_Precio" class="java.lang.Integer"/>
+	<field name="ruta_Salida" class="java.lang.String"/>
+	<field name="ruta_Destino" class="java.lang.String"/>
+	<field name="ruta_Horario" class="java.sql.Time"/>
+	<field name="ruta_Buses" class="java.lang.String"/>
+	<field name="venta_Codigo" class="java.lang.Integer"/>
+	<field name="venta_Fecha_De_Venta" class="java.sql.Date"/>
+	<field name="venta_Asiento_Asignado" class="java.lang.Integer"/>
+	<field name="venta_FechaSalida" class="java.sql.Date"/>
+	<field name="venta_Medio_De_Pago" class="java.lang.String"/>
+	<field name="venta_Tasa_Salida" class="java.lang.Integer"/>
+	<field name="venta_IVA" class="java.lang.Integer"/>
+	<field name="venta_Monto" class="java.lang.Integer"/>
+	<field name="cliente_Cedula" class="java.lang.Integer"/>
+	<field name="cliente_Nombre" class="java.lang.String"/>
+	<field name="cliente_Apellido" class="java.lang.String"/>
+	<field name="cliente_Telefono" class="java.lang.String"/>
+	<field name="buses_Placa" class="java.lang.String"/>
+	<field name="buses_NumerodeBus" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="75">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="388d1e19-7a68-4ad0-8378-a74c9f305f1e"/>
+				<staticText>
+					<reportElement x="0" y="20" width="234" height="43" forecolor="#99FF99" uuid="b9452bb8-d4dc-4a5b-ac9c-7f7d0eeaa322"/>
+					<textElement>
+						<font fontName="Showcard Gothic" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[JG Travel’s]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="369" y="23" width="51" height="20" forecolor="#FFFFFF" uuid="4b667925-9019-4cc8-96a0-9cf87d1997f5"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Boleto:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="479" y="23" width="100" height="20" forecolor="#FFFFFF" uuid="ce5c1954-4c6b-41d8-8281-764cd8fc02b4"/>
+					<textElement>
+						<font fontName="Showcard Gothic"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{venta_Codigo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="479" y="43" width="100" height="20" forecolor="#FFFFFF" uuid="cbf27bb1-a8e1-4c1e-a0ff-1265449ecd10"/>
+					<textElement>
+						<font fontName="Showcard Gothic"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{venta_Fecha_De_Venta}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="369" y="43" width="110" height="20" forecolor="#FFFFFF" uuid="5ddfbfa3-ab1b-40f3-8383-e78e9862c80b"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Fecha de Venta:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="479" y="63" width="100" height="20" forecolor="#FFFFFF" uuid="559b1eee-77e0-49dc-8f71-1366c8784234"/>
+					<textElement>
+						<font fontName="Showcard Gothic"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{venta_FechaSalida}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="369" y="63" width="110" height="20" forecolor="#FFFFFF" uuid="76e03069-8316-424c-b776-b249320d013f"/>
+					<textElement>
+						<font size="15"/>
+					</textElement>
+					<text><![CDATA[Fecha de Salida]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="83">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="17707183-3a44-4e61-9653-797076ae536b"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="63" width="100" height="20" uuid="d150dd03-aeca-40c0-827c-6f2680aca975"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="63" width="100" height="20" uuid="543cca47-7f13-43e5-96ca-4987b2be8e0c"/>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="63" width="100" height="20" uuid="2ef742e8-0452-4cd5-8c03-1272795cce88"/>
+				<text><![CDATA[Medio De Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="1" width="100" height="20" uuid="0e704784-272c-4a2b-a549-46ef50aff825"/>
+				<text><![CDATA[Horario]]></text>
+			</staticText>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="452" y="21" width="100" height="20" uuid="58700875-e46b-45d0-8d76-ed3976d9beb0"/>
+				<textFieldExpression><![CDATA[$F{ruta_Horario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="352" y="0" width="100" height="20" uuid="6eb7ca10-31fd-48eb-8825-21ee68955640"/>
+				<text><![CDATA[Destino]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="352" y="21" width="100" height="20" uuid="a497eeb5-d5be-4ea3-a792-12390f5380b7"/>
+				<textFieldExpression><![CDATA[$F{ruta_Destino}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="63" width="100" height="20" uuid="2dd5ea44-5972-464b-90f9-6e2fa304902e"/>
+				<text><![CDATA[Salida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="63" width="100" height="20" uuid="e1ae63cb-6442-4980-9bbb-9745856864fc"/>
+				<text><![CDATA[Asiento Asignado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="139">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="0d39bdba-e8fb-429d-a5fe-547efacc49ac"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="20" width="100" height="20" uuid="2e8e6154-8aca-4e1c-9571-18d03e8334c2"/>
+				<textFieldExpression><![CDATA[$F{cliente_Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="61ca896f-ba53-4023-8a05-425d23819d4a"/>
+				<textFieldExpression><![CDATA[$F{cliente_Apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="19" width="100" height="20" uuid="c285cf4e-394d-4783-8907-aee4ce6b5180"/>
+				<textFieldExpression><![CDATA[$F{venta_Medio_De_Pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="20" width="100" height="20" uuid="77ceed06-dd74-4a0a-ab45-e21482762239"/>
+				<textFieldExpression><![CDATA[$F{ruta_Salida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="119" width="100" height="20" uuid="10deb699-898b-4314-bb3c-dea753084c72"/>
+				<textFieldExpression><![CDATA[$F{ruta_Precio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="114" y="99" width="100" height="20" uuid="58b0a357-7e76-4202-a679-4317e384cafc"/>
+				<text><![CDATA[Precio del Boleto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="214" y="119" width="100" height="20" uuid="7daca445-e2d6-4d8e-8ee9-db79957a635d"/>
+				<textFieldExpression><![CDATA[$F{venta_Tasa_Salida}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="214" y="99" width="100" height="20" uuid="0f88c5bf-ba4a-4b3d-9bf9-e964e6f8428d"/>
+				<text><![CDATA[Tasa_Salida (1%)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="314" y="119" width="100" height="20" uuid="348209a0-fdad-4b79-8302-0749f2c2f089"/>
+				<textFieldExpression><![CDATA[$F{venta_IVA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="314" y="99" width="100" height="20" uuid="d5e5a145-8ca9-4823-bcf0-6a58523be8e0"/>
+				<text><![CDATA[IVA (12%)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="415" y="119" width="100" height="20" uuid="70f89b05-676e-47ca-a583-ea4b1ba84d3b"/>
+				<textFieldExpression><![CDATA[$F{venta_Monto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="415" y="99" width="100" height="20" uuid="c73f2e99-a2d8-43c9-90ab-57fc2ffbd611"/>
+				<text><![CDATA[Monto Pagado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="20" width="100" height="20" uuid="97a0092a-7b9a-482e-b439-8ab094936ce1"/>
+				<textFieldExpression><![CDATA[$F{venta_Asiento_Asignado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="119" width="100" height="20" uuid="0277641d-ba18-4794-abdf-6395943394d5"/>
+				<textFieldExpression><![CDATA[$F{buses_NumerodeBus}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="99" width="100" height="20" uuid="2c81ed47-5bfd-44a8-b8e1-87bfd3369cc8"/>
+				<text><![CDATA[Numero de Bus]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="63">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="81b21f67-90c0-4489-bb8a-e74691d4d9f0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="bf630d22-f0c9-4250-8f88-f54235eaf85c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="dfc78606-98f7-471c-9fd3-ab202d2ba411"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

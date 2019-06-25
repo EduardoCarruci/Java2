@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_ClienteViajes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37401e22-f2da-4a53-adeb-5ef45b7e0005">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Cedula" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     cliente.`Cedula` AS cliente_Cedula,
+     cliente.`Nombre` AS cliente_Nombre,
+     cliente.`Apellido` AS cliente_Apellido,
+     cliente.`Telefono` AS cliente_Telefono,
+     ruta.`Codigo` AS ruta_Codigo,
+     ruta.`Precio` AS ruta_Precio,
+     ruta.`Salida` AS ruta_Salida,
+     ruta.`Destino` AS ruta_Destino,
+     ruta.`Horario` AS ruta_Horario,
+     ruta.`Buses` AS ruta_Buses,
+     venta.`Codigo` AS venta_Codigo,
+     venta.`Fecha_De_Venta` AS venta_Fecha_De_Venta,
+     venta.`Asiento_Asignado` AS venta_Asiento_Asignado,
+     venta.`FechaSalida` AS venta_FechaSalida,
+     venta.`Medio_De_Pago` AS venta_Medio_De_Pago,
+     venta.`Tasa_Salida` AS venta_Tasa_Salida,
+     venta.`IVA` AS venta_IVA,
+     venta.`Empleado` AS venta_Empleado,
+     venta.`Cliente` AS venta_Cliente,
+     venta.`Ruta` AS venta_Ruta,
+     venta.`NumerodeBus` AS venta_NumerodeBus,
+     venta.`Monto` AS venta_Monto,
+     buses.`Placa` AS buses_Placa,
+     buses.`NumerodeBus` AS buses_NumerodeBus
+FROM
+     `cliente` cliente INNER JOIN `venta` venta ON cliente.`Cedula` = venta.`Cliente`
+     INNER JOIN `ruta` ruta ON venta.`Ruta` = ruta.`Codigo`
+     INNER JOIN `buses` buses ON ruta.`Buses` = buses.`Placa`
+where cliente.`Cedula`=$P{Cedula}]]>
+	</queryString>
+	<field name="cliente_Cedula" class="java.lang.Integer"/>
+	<field name="cliente_Nombre" class="java.lang.String"/>
+	<field name="cliente_Apellido" class="java.lang.String"/>
+	<field name="cliente_Telefono" class="java.lang.String"/>
+	<field name="ruta_Codigo" class="java.lang.Integer"/>
+	<field name="ruta_Precio" class="java.lang.Integer"/>
+	<field name="ruta_Salida" class="java.lang.String"/>
+	<field name="ruta_Destino" class="java.lang.String"/>
+	<field name="ruta_Horario" class="java.sql.Time"/>
+	<field name="ruta_Buses" class="java.lang.String"/>
+	<field name="venta_Codigo" class="java.lang.Integer"/>
+	<field name="venta_Fecha_De_Venta" class="java.sql.Date"/>
+	<field name="venta_Asiento_Asignado" class="java.lang.Integer"/>
+	<field name="venta_FechaSalida" class="java.sql.Date"/>
+	<field name="venta_Medio_De_Pago" class="java.lang.String"/>
+	<field name="venta_Tasa_Salida" class="java.lang.Integer"/>
+	<field name="venta_IVA" class="java.lang.Integer"/>
+	<field name="venta_Empleado" class="java.lang.Integer"/>
+	<field name="venta_Cliente" class="java.lang.Integer"/>
+	<field name="venta_Ruta" class="java.lang.Integer"/>
+	<field name="venta_NumerodeBus" class="java.lang.String"/>
+	<field name="venta_Monto" class="java.lang.Integer"/>
+	<field name="buses_Placa" class="java.lang.String"/>
+	<field name="buses_NumerodeBus" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="2431feb3-b2b8-4b7c-a969-52503a0000a3"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FF9999" uuid="a9bffa9e-07dc-446e-9b9d-55602c4743cc"/>
+					<textElement>
+						<font fontName="Showcard Gothic" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[JG Travel’s]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="447" y="63" width="128" height="20" forecolor="#FFFFFF" uuid="c44246b5-b7a2-4f1d-8e5d-ac635ca4179b"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Historial del Cliente]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="71">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="21cb831a-e8f0-42ce-b1d6-c1121d5a0bbb"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="51" width="100" height="20" uuid="1fa2080b-e3d7-49ce-8ed9-cfe820ad3883"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="51" width="100" height="20" uuid="9d820f0d-f699-4622-a175-91e887501d2f"/>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="51" width="100" height="20" uuid="5d3da264-4c91-4cbe-9205-104d68bbf471"/>
+				<text><![CDATA[Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="51" width="69" height="20" uuid="07043cee-0eb5-4bbb-be07-4eef9a662388"/>
+				<text><![CDATA[Salida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="51" width="100" height="20" uuid="984458cc-f7a0-4140-a876-7d0e28088017"/>
+				<text><![CDATA[Fecha de Salida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="89">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="db10a74e-477d-4d32-ad2f-4a266afbacfa"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="19" width="100" height="20" uuid="6123197c-f501-4495-89c3-5f2e67a48cb5"/>
+				<textFieldExpression><![CDATA[$F{cliente_Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="faafa887-5052-41eb-895f-6143bc2bc5fb"/>
+				<textFieldExpression><![CDATA[$F{cliente_Apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="20" width="100" height="20" uuid="121db48d-be8f-42e8-b8f7-cc09a5b0f84d"/>
+				<textFieldExpression><![CDATA[$F{ruta_Destino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="19" width="79" height="20" uuid="b78c8db0-ce7e-485d-a366-04262d750668"/>
+				<textFieldExpression><![CDATA[$F{ruta_Salida}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="379" y="20" width="100" height="20" uuid="c5b34729-1d99-4e58-af1e-0719f4016158"/>
+				<textFieldExpression><![CDATA[$F{venta_FechaSalida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="1ca01267-18c6-40ef-bda6-23a7fc6a53c8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="66a43a0e-e0fc-41e9-b9b2-a2efc66a3944"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="e2cdf1bd-6717-4c57-9cfa-7f2279d3b784"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

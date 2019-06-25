@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Cliente" language="groovy" pageWidth="720" pageHeight="900" columnWidth="680" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e10e80b3-39b0-487f-a1eb-0e55d786eee6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     ruta.`Codigo` AS ruta_Codigo,
+     ruta.`Precio` AS ruta_Precio,
+     ruta.`Salida` AS ruta_Salida,
+     ruta.`Destino` AS ruta_Destino,
+     ruta.`Horario` AS ruta_Horario,
+     ruta.`Buses` AS ruta_Buses,
+     ruta.`Chofer` AS ruta_Chofer
+FROM
+     `ruta` ruta]]>
+	</queryString>
+	<field name="ruta_Precio" class="java.lang.Integer"/>
+	<field name="ruta_Buses" class="java.lang.String"/>
+	<field name="ruta_Horario" class="java.sql.Time"/>
+	<field name="ruta_Chofer" class="java.lang.Integer"/>
+	<field name="ruta_Codigo" class="java.lang.Integer"/>
+	<field name="ruta_Salida" class="java.lang.String"/>
+	<field name="ruta_Destino" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="718" height="92" backcolor="#9999FF" uuid="541da76f-6476-4746-b1ea-258f030ec35d"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="d6e2aadd-bcec-48fd-900d-7b86f8f8c829"/>
+					<textElement>
+						<font fontName="Showcard Gothic" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[JG Travel’s]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="505" y="31" width="195" height="43" forecolor="#FFFFFF" backcolor="#336600" uuid="1459c28b-fb69-4bf6-9b39-1946a125057a"/>
+					<textElement textAlignment="Right">
+						<font fontName="Showcard Gothic" size="20" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Listado de Rutas ]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="62">
+			<line>
+				<reportElement x="-20" y="20" width="698" height="1" forecolor="#666666" uuid="ee775142-2e79-4b60-b760-f62dd944caa9"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="42" width="100" height="20" uuid="0bd2f565-63a5-4c44-b201-cb8db904c305"/>
+				<text><![CDATA[Codigo de Ruta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="42" width="100" height="20" uuid="643bf5ab-39cd-4714-aa88-6a538906b15a"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="42" width="100" height="20" uuid="385f5175-2764-49ea-a6b6-d575a2c1e997"/>
+				<text><![CDATA[Salida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="42" width="100" height="20" uuid="408c0bac-8b6a-49cb-8ac7-f85055872a55"/>
+				<text><![CDATA[Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="42" width="100" height="20" uuid="818f1149-58c0-41f4-acb0-a6428d5ddfcc"/>
+				<text><![CDATA[Buses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="42" width="100" height="20" uuid="1d202d5c-b449-4108-affc-bd6b5cbff2e1"/>
+				<text><![CDATA[Chofer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="42" width="100" height="20" uuid="39798060-16b8-4e25-8e16-94f4842f1553"/>
+				<text><![CDATA[Horario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="56">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="678" height="1" uuid="8c4c0f0d-dfa3-4590-99b7-7af32b75c851"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="20" width="100" height="20" uuid="28b35c69-b8e9-4a6d-9752-4e725e29a1df"/>
+				<textFieldExpression><![CDATA[$F{ruta_Codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="292e3320-1ea0-4fef-be2f-6d61889fcc4f"/>
+				<textFieldExpression><![CDATA[$F{ruta_Precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="20" width="100" height="20" uuid="102245ad-a5e3-4f3e-941c-e35625c19a83"/>
+				<textFieldExpression><![CDATA[$F{ruta_Salida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="19" width="100" height="20" uuid="fcf3a613-202b-4be0-93bd-50a2ef93c458"/>
+				<textFieldExpression><![CDATA[$F{ruta_Destino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="20" width="100" height="20" uuid="e669b83c-ad35-46c0-9b5e-31e1c5372485"/>
+				<textFieldExpression><![CDATA[$F{ruta_Buses}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="19" width="100" height="20" uuid="089a79d3-861f-41ad-a4bf-f702542d6975"/>
+				<textFieldExpression><![CDATA[$F{ruta_Chofer}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="200" y="19" width="100" height="20" uuid="7c9f1a58-7d35-4c20-b07b-05c9fe4eb31a"/>
+				<textFieldExpression><![CDATA[$F{ruta_Horario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="638" height="13" backcolor="#E6E6E6" uuid="c09be19b-c933-42b7-8f4b-16591770d365"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="638" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9d9148ae-0835-44e2-ab8d-0677286b1785"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="ec364f2f-1eb6-4f68-8d3e-c836efc3af70"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
